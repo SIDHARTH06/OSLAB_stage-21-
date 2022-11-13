@@ -1,0 +1,24 @@
+type
+Student
+{
+    str name;
+    int marks;
+}
+endtype
+int main()
+{
+    decl
+        Student s1;
+        int temp;
+    enddecl
+    begin
+        breakpoint;
+        s1=initialize();
+        s1=alloc();
+        s1.name="John";
+        s1.marks=89;
+        temp = exposcall("Write",-2,s1.name);
+        temp = exposcall("Write",-2,s1.marks);
+        return 0;
+    end
+}
