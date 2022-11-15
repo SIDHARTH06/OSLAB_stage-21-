@@ -68,6 +68,9 @@ loadi(60,4);
 //load the disk free list
 loadi(61, 2);
 
+//int 8
+loadi(18, 31);
+loadi(19, 32);
 
 [TERMINAL_STATUS_TABLE] = 0;
 

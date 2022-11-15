@@ -11,31 +11,31 @@ process_table_entry = PROCESS_TABLE + currentPID*16;
 [process_table_entry + 15] = PTLR;
 
 alias newPID R2;
-alias bool R3;
-bool = 0;
+alias checkcntr R3;
+checkcntr = 0;
 
-if( (bool == 0) ) then
+if( (checkcntr == 0) ) then
 	newPID = currentPID+1;
 	while( (newPID < 16) ) do
 		if( ([PROCESS_TABLE + newPID*16 +4] == READY || [PROCESS_TABLE + newPID*16 +4] == CREATED) ) then
-			bool = 1;
+			checkcntr = 1;
 			break;
 		endif;
 		newPID = newPID+1;
 	endwhile;
 endif;
-if( (bool == 0) ) then
+if( (checkcntr == 0) ) then
 	newPID = 1;
 	while( (newPID <= currentPID) ) do
 		if( ([PROCESS_TABLE + newPID*16 +4] == READY || [PROCESS_TABLE + newPID*16 +4] == CREATED) ) then
-			bool = 1;
+			checkcntr = 1;
 			break;
 		endif;
 		newPID = newPID+1;
 	endwhile;
 endif;
 
-if( (bool == 0) ) then
+if( (checkcntr == 0) ) then
 	newPID = 0; 
 endif;
 

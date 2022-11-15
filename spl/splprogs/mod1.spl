@@ -54,5 +54,28 @@ if( (functionNum == FREE_PAGE_TABLE) ) then
 	endwhile;
 	return;
 endif;
-
+if ( (functionNum == GET_PCB_ENTRY)) then
+	alias i R3;
+	alias pidret R0;
+	alias found R5;
+	alias process_tb_entry R4;
+	while (i<MAX_PROC_NUM) do
+		process_tb_entry = PROCESS_TABLE + i*16;
+		if ([process_tb_entry+4]==TERMINATED) then
+			found=1;
+			pidret = [process_tb_entry+1];
+			[process_tb_entry+4]=ALLOCATED;
+		endif;
+		if(found==0) then
+			pidret = -1;
+			return;
+		endif;
+		[process_tb_entry + 4] = i;
+		[process_tb_entry + 4] = ALLOCATED;
+		[process_tb_entry+14]=PAGE_TABLE_BASE+20*i;
+		[process_tb_entry+15]=10;
+		pidret=i;
+		return;
+	endwhile;
+endif;
 return;
