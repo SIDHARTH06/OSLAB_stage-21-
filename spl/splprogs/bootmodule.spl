@@ -65,11 +65,13 @@ loadi(60,4);
  loadi(6,19);
  loadi(7,20);
 
+//load the disk free list
+loadi(61, 2);
 
-//initialize Terminal Status table
+
 [TERMINAL_STATUS_TABLE] = 0;
 
- //initialize Disk status tabel
+
  [DISK_STATUS_TABLE + 0] = 0;
 
 //init mem location (65, 66)
